@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class Session(models.Model):
+class SessionTechra(models.Model):
     fecha_creacion = models.DateTimeField()
     id_session = models.CharField(max_length=100)
     duracion_minutos = models.IntegerField()

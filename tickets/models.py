@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Ticket(models.Model):
 
-    ticket = models.IntegerField()
+    ticket = models.CharField(max_length=10)
     titulo = models.CharField(max_length=100)
     fecha_creacion = models.DateField()
     prioridad = models.CharField(max_length=100)

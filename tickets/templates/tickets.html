@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Tickets
+{% endblock %}
+{% block content %}
+    <div>
+        <h1>Lista de Tickets</h1>
+        <br>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="table-responsive">
+                    <table id="tickets" class="table">
+                        <thead>
+                        <th class="centered">Ticket</th>
+                        <th class="centered">Título</th>
+                        </thead>
+                        <tbody>
+                        {% for ticket in tickets %}
+                            <tr>
+                                <td>{{ ticket.ticket }}</td>
+                                <td>{{ ticket.titulo }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

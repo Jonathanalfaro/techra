@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Perfil
+{% endblock %}
+{% block content %}
+    <div class="container container-fluid">
+        <h1>Perfil</h1>
+
+        <form method="post" class="form-with-validation" action="">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <input type="text" value="{{ user }}" disabled class="form-control"/>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    {{ form.user_techra }}
+                    <label class="form-label" for="techrausername">Nombre de usuario</label>
+                </div>
+                <div class="col">
+                    {{ form.password_techra }}
+                    <label class="form-label" for="techrapassword">Password techra</label>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-primary form-submint">Guardar</button>
+        </form>
+    </div>
+
+
+{% endblock %}

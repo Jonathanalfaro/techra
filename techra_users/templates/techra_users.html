@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Usuarios
+{% endblock %}
+{% block content %}
+    <div>
+        <h1>Lista de usuarios (Técnicos)</h1>
+        <br>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="table-responsive">
+                    <table id="usuarios_techra" class="table">
+                        <thead>
+                        <th class="centered">id</th>
+                        <th class="centered">Nombre</th>
+                        <th></th>
+                        </thead>
+                        <tbody>
+                        {% for user in techra_users %}
+                            <tr>
+                                <td>{{ user.id_usuario }}</td>
+                                <td>{{ user.nombre }}</td>
+                                <td>
+                                    <a id="open_log" title="Ver Tickets" class="btn btn-sm btn-secondary" href="{% url 'ticket_list_by_user' user_id=user.id_usuario %}">
+                                        <i class="fa-solid fa-hourglass"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
