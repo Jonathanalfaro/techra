@@ -21,12 +21,12 @@
                             <td>{{ equipo.modelo }}</td>
                             <td>
                                 <a id="ver_tickets" title="Ver Tickets" class="btn btn-sm btn-info"
-                                   href="{% url 'ticket_list_by_equipo' equipo_id=equipo.numero_serie %}">
+                                   href="{% url 'ticket_list_by_equipo' numero_serie=equipo.numero_serie %}">
                                     <i class="fa-solid fa-ticket"></i>
                                 </a>
                                 <a id="ver_refacciones" title="Ver refacciones" class="btn btn-sm btn-info"
                                    href="{% url 'refacciones_list_by_equipo' numero_serie=equipo.numero_serie %}">
-                                    <i class="fa-solid fa-gear"></i>
+                                    <i class="fa-solid fa-wrench"></i>
                                 </a>
                             </td>
                         </tr>

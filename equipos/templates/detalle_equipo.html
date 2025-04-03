@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block title %}
+    {{ equipo.numero_serie }}
+{% endblock %}
+{% block content %}
+    <h1>{{ equipo.numero_serie }}</h1>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="table-responsive">
+                <table id="equipo" class="table">
+                    <thead>
+                    <th class="centered">Número de serie</th>
+                    <th class="centered">Modelo</th>
+                    <th>Acciones</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ equipo.numero_serie }}</td>
+                        <td>{{ equipo.modelo }}</td>
+                        <td>
+                            <a id="ver_tickets" title="Ver Tickets" class="btn btn-sm btn-info"
+                               href="{% url 'ticket_list_by_equipo' numero_serie=equipo.numero_serie %}">
+                                <i class="fa-solid fa-ticket"></i>
+                            </a>
+                            <a id="ver_refacciones" title="Ver refacciones" class="btn btn-sm btn-info"
+                               href="{% url 'refacciones_list_by_equipo' numero_serie=equipo.numero_serie %}">
+                                <i class="fa-solid fa-gear"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

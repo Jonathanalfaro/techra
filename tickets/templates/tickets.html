@@ -13,12 +13,24 @@
                         <thead>
                         <th class="centered">Ticket</th>
                         <th class="centered">Título</th>
+                        <th class="centered">Fecha</th>
+                        <th class="centered">Técnico</th>
+                        <th class="centered">Área de atención</th>
+                        <th class="centered">Número de serie</th>
                         </thead>
                         <tbody>
                         {% for ticket in tickets %}
                             <tr>
                                 <td>{{ ticket.ticket }}</td>
                                 <td>{{ ticket.titulo }}</td>
+                                <td>{{ ticket.fecha_creacion }}</td>
+                                <td><a href="{% url 'detalle_techra_users' nombre_usuario=ticket.tecnico %}">{{ ticket.tecnico }}</a></td>
+                                <td>{{ ticket.area_atencion }}</td>
+                                <td>
+                                    {% for ns in ticket.serie_as_list %}
+                                        <a href="{% url 'detalle_equipo' numero_serie=ns%}">{{ ns }}</a>
+                                    {% endfor %}
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'usuarios',
     'equipos',
     'refacciones',
+    'api_techra',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+BASE_URL = 'http://pruebas1.techra.com.mx/WebService/'
+USUARIO = 'cliente_prueba'
+PASSWD= 'c27c2a5cdbcd7542dd00bb6819f8c1ce'
+
+WS_NAMES = {
+    'tickets': 'ConsultaTicket.php?wsdl',
+    'notas': 'ConsultaNota.php?wsdl',
+    'refacciones': 'ObtenerParteComponente.php?wsdl',
+    'usuarios': 'ListaUsuario.php?wsdl',
+}
