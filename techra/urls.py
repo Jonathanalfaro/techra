@@ -24,4 +24,6 @@ urlpatterns = [
     path('', include('tickets.urls')),
     path('', include('techra_users.urls')),
     path('', include('usuarios.urls')),
+    path('', include('equipos.urls')),
+    path('', include('refacciones.urls')),
 ]

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class LocalizacionesConfig(AppConfig):
+class RefaccionesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'localizaciones'
+    name = 'refacciones'

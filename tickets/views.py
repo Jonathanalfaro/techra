@@ -15,3 +15,9 @@ def ticket_list(request):
 def ticket_list_by_user(request, user_id):
     tickets = Ticket.objects.all()
     return render(request, 'tickets.html', {'tickets': tickets})
+
+
+@login_required(login_url='login')
+def ticket_list_by_equipo(request, equipo_id):
+    tickets = Ticket.objects.all()
+    return render(request, 'tickets.html', {'tickets': tickets})

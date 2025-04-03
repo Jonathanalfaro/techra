@@ -44,12 +44,20 @@
                             <a href="/usuarios/" class="nav-link px-0 align-middle">
                                 <i class="fa fa-users"></i> <span class="ms-1 d-none d-sm-inline">Usuarios</span></a>
                         </li>
+                        <li>
+                            <a href="/equipos/" class="nav-link px-0 align-middle">
+                                <i class="fa fa-print"></i> <span class="ms-1 d-none d-sm-inline">Equipos</span></a>
+                        </li>
+                        <li>
+{#                            <a href="/refacciones/" class="nav-link px-0 align-middle">#}
+{#                                <i class="fa fa-gears"></i> <span class="ms-1 d-none d-sm-inline">Refacciones</span></a>#}
+                        </li>
                     {% endif %}
-                    <li>
-                        <a href="/about/" class="nav-link px-0 align-middle">
-                            <i class="fa-solid fa-circle-info"></i> <span
-                                class="ms-1 d-none d-sm-inline">Acerca de</span> </a>
-                    </li>
+{#                    <li>#}
+{#                        <a href="/about/" class="nav-link px-0 align-middle">#}
+{#                            <i class="fa-solid fa-circle-info"></i> <span#}
+{#                                class="ms-1 d-none d-sm-inline">Acerca de</span> </a>#}
+{#                    </li>#}
                     {% if not user.is_authenticated %}
                         <li>
                             <a href="/login/" class="nav-link px-0 align-middle">

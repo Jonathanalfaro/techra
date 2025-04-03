@@ -10,14 +10,15 @@
             {% csrf_token %}
             <div class="row">
                 <div class="col">
-                    <input type="text" value="{{ user }}" disabled class="form-control"/>
+                    <input type="text" value="{{ user }}" id="usuario" name="usuario" disabled class="form-control"/>
+                    <label class="form-label" for="usuario">Nombre de usuario</label>
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col">
                     {{ form.user_techra }}
-                    <label class="form-label" for="techrausername">Nombre de usuario</label>
+                    <label class="form-label" for="techrausername">Nombre de usuario TECHRA</label>
                 </div>
                 <div class="col">
                     {{ form.password_techra }}

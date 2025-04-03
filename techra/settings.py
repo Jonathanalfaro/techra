@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'techra_users',
     'sesiones',
     'usuarios',
+    'equipos',
+    'refacciones',
 ]
 
 MIDDLEWARE = [

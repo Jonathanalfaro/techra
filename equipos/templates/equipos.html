@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Equipos
+{% endblock %}
+{% block content %}
+    <h1>Lista de Equipos</h1>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="table-responsive">
+                <table id="equipos" class="table">
+                    <thead>
+                    <th class="centered">Número de serie</th>
+                    <th class="centered">Modelo</th>
+                    <th>Acciones</th>
+                    </thead>
+                    <tbody>
+                    {% for equipo in equipos %}
+                        <tr>
+                            <td>{{ equipo.numero_serie }}</td>
+                            <td>{{ equipo.modelo }}</td>
+                            <td>
+                                <a id="ver_tickets" title="Ver Tickets" class="btn btn-sm btn-info"
+                                   href="{% url 'ticket_list_by_equipo' equipo_id=equipo.numero_serie %}">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a id="ver_refacciones" title="Ver refacciones" class="btn btn-sm btn-info"
+                                   href="{% url 'refacciones_list_by_equipo' numero_serie=equipo.numero_serie %}">
+                                    <i class="fa-solid fa-gear"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

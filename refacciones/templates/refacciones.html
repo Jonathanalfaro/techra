@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Equipos
+{% endblock %}
+{% block content %}
+    <h1>Lista de Refacciones</h1>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="table-responsive">
+                <table id="equipos" class="table">
+                    <thead>
+                    <th class="centered">Número de serie</th>
+                    <th class="centered">Modelo</th>
+                    </thead>
+                    <tbody>
+                    {% for refaccion in refacciones %}
+                        <tr>
+                            <td>{{ refaccion.numero_serie }}</td>
+                            <td>{{ refaccion.modelo }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
