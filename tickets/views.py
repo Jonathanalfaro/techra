@@ -1,12 +1,13 @@
+import json
+import random
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-import random
+
 from api_techra.views import get_tickets_techra
 from equipos.models import EquipoTechra
-from .models import Ticket
-import json
-
 from techra_users.models import TechraUsers
+from .models import Ticket
 
 
 # Create your views here.
@@ -18,7 +19,7 @@ def ticket_list(request):
             tickets = get_tickets_techra(request)
             tickets = json.loads(tickets.content.decode("utf-8"))
             for ticket in tickets:
-                nuevo_ticket =Ticket.objects.create(
+                nuevo_ticket = Ticket.objects.create(
                     ticket=ticket['Ticket'],
                     titulo=ticket['Titulo'],
                     fecha_creacion=ticket['FechaCreacion'],
@@ -67,14 +68,18 @@ def ticket_list(request):
                         nombre=ticket['Tecnico'],
                     )
                     techra_user.save()
-                equipo = EquipoTechra.objects.filter(numero_serie=ticket['Serie'])
-                if not equipo:
-                    equipo = EquipoTechra.objects.create(
-                        numero_serie=ticket['Serie']
-                    )
-                    equipo.save()
+                if nuevo_ticket.serie:
+                    equipos_list = nuevo_ticket.serie.split(',')
+                    for equ in equipos_list:
+                        equipo = EquipoTechra.objects.filter(numero_serie=equ.strip())
+                        if not equipo:
+                            equipo = EquipoTechra.objects.create(
+                                numero_serie=equ.strip()
+                            )
+                            equipo.save()
+
         except Exception as e:
-            tickets=[]
+            tickets = []
     return render(request, 'tickets.html', {'tickets': tickets})
 
 

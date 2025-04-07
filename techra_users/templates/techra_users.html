@@ -8,8 +8,11 @@
         <br>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <div class="table-responsive">
-                    <table id="usuarios_techra" class="table">
+                <div class="spinner-border" role="status" id="loading-users">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="table-responsive" id="div-usuarios" style="visibility:hidden">
+                    <table id="usuarios" class="table table-striped table-bordered">
                         <thead>
                         <th class="centered">id</th>
                         <th class="centered">Nombre</th>
@@ -21,7 +24,8 @@
                                 <td>{{ user.id_usuario }}</td>
                                 <td>{{ user.nombre }}</td>
                                 <td>
-                                    <a id="view_tickets" title="Ver Tickets" class="btn btn-sm btn-secondary" href="{% url 'ticket_list_by_user' nombre_tecnico=user.nombre %}">
+                                    <a id="view_tickets" title="Ver Tickets" class="btn btn-sm btn-secondary"
+                                       href="{% url 'ticket_list_by_user' nombre_tecnico=user.nombre %}">
                                         <i class="fa-solid fa-ticket"></i>
                                     </a>
                                 </td>

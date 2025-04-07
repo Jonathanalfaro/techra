@@ -13,10 +13,10 @@ def get_tickets_techra(request):
     url = f'{base_url}{ws_name}'
     cliente_tickets = Client(url)
     res = cliente_tickets.service.getTickets(
-        'Ib-lGGWrv=Mmhqx',
+        '3J3LsKzcSPbOen9',
         '',  # usuario
         '',  # status
-        '2025-03-01',  # fecha
+        '2025-01-01',  # fecha
         '',  # fechafin
         '',  # latitud
         '',  # longitud

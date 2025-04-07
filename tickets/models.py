@@ -44,6 +44,9 @@ class Ticket(models.Model):
     id_ultimo_estado = models.IntegerField(null=True)
 
     def serie_as_list(self):
-        return self.serie.split(',')
+        if self.serie:
+            return self.serie.split(',')
+        else:
+            return []
 
 

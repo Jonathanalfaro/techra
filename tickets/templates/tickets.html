@@ -8,8 +8,11 @@
         <br>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <div class="table-responsive">
-                    <table id="tickets" class="table">
+                <div class="spinner-border" role="status" id="loading-tickets">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="table-responsive" id="div-tickets" style="visibility:hidden">
+                    <table id="tickets" class="table table-striped table-bordered">
                         <thead>
                         <th class="centered">Ticket</th>
                         <th class="centered">Título</th>
@@ -34,7 +37,8 @@
                                         <a href="{% url 'detalle_equipo' numero_serie=ns %}">{{ ns }}</a>
                                     {% endfor %}
                                 </td>
-                                <td><a href="#" title="Ver Notas" class="btn btn-sm btn-info" ><i class="fa-solid fa-note-sticky"></i></a></td>
+                                <td><a href="#" title="Ver Notas" class="btn btn-sm btn-info"><i
+                                        class="fa-solid fa-note-sticky"></i></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

@@ -17,6 +17,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
 
 
     {#    {datatable}#}
@@ -49,15 +50,15 @@
                                 <i class="fa fa-print"></i> <span class="ms-1 d-none d-sm-inline">Equipos</span></a>
                         </li>
                         <li>
-{#                            <a href="/refacciones/" class="nav-link px-0 align-middle">#}
-{#                                <i class="fa fa-gears"></i> <span class="ms-1 d-none d-sm-inline">Refacciones</span></a>#}
+                            {#                            <a href="/refacciones/" class="nav-link px-0 align-middle">#}
+                            {#                                <i class="fa fa-gears"></i> <span class="ms-1 d-none d-sm-inline">Refacciones</span></a>#}
                         </li>
                     {% endif %}
-{#                    <li>#}
-{#                        <a href="/about/" class="nav-link px-0 align-middle">#}
-{#                            <i class="fa-solid fa-circle-info"></i> <span#}
-{#                                class="ms-1 d-none d-sm-inline">Acerca de</span> </a>#}
-{#                    </li>#}
+                    {#                    <li>#}
+                    {#                        <a href="/about/" class="nav-link px-0 align-middle">#}
+                    {#                            <i class="fa-solid fa-circle-info"></i> <span#}
+                    {#                                class="ms-1 d-none d-sm-inline">Acerca de</span> </a>#}
+                    {#                    </li>#}
                     {% if not user.is_authenticated %}
                         <li>
                             <a href="/login/" class="nav-link px-0 align-middle">
