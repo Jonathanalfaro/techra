@@ -17,6 +17,7 @@
                         <th class="centered">Técnico</th>
                         <th class="centered">Área de atención</th>
                         <th class="centered">Número de serie</th>
+                        <th>Acciones</th>
                         </thead>
                         <tbody>
                         {% for ticket in tickets %}
@@ -24,13 +25,16 @@
                                 <td>{{ ticket.ticket }}</td>
                                 <td>{{ ticket.titulo }}</td>
                                 <td>{{ ticket.fecha_creacion }}</td>
-                                <td><a href="{% url 'detalle_techra_users' nombre_usuario=ticket.tecnico %}">{{ ticket.tecnico }}</a></td>
+                                <td>
+                                    <a href="{% url 'detalle_techra_users' nombre_usuario=ticket.tecnico %}">{{ ticket.tecnico }}</a>
+                                </td>
                                 <td>{{ ticket.area_atencion }}</td>
                                 <td>
                                     {% for ns in ticket.serie_as_list %}
-                                        <a href="{% url 'detalle_equipo' numero_serie=ns%}">{{ ns }}</a>
+                                        <a href="{% url 'detalle_equipo' numero_serie=ns %}">{{ ns }}</a>
                                     {% endfor %}
                                 </td>
+                                <td><a href="#" title="Ver Notas" class="btn btn-sm btn-info" ><i class="fa-solid fa-note-sticky"></i></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>
