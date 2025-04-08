@@ -135,13 +135,14 @@ STATICFILES_DIRS =[
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-BASE_URL = 'https://ara.techra.com.mx/WebService/'
+BASE_URL = 'http://pruebas1.techra.com.mx/WebService/'
 USUARIO = 'cliente_prueba'
 PASSWD= 'c27c2a5cdbcd7542dd00bb6819f8c1ce'
 
 WS_NAMES = {
     'tickets': 'ConsultaTicket.php?wsdl',
     'notas': 'ConsultaNota.php?wsdl',
-    'refacciones': 'ObtenerParteComponente.php?wsdl',
+    'refacciones': 'GetRefbySerie.php?wsdl',
     'usuarios': 'ListaUsuario.php?wsdl',
+    'login': 'AutenticaUsuario.php?wsdl',
 }

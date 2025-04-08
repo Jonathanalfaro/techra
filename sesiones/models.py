@@ -12,3 +12,4 @@ class SessionTechra(models.Model):
     id_puesto = models.IntegerField()
     minutos_monitoreo_anterior = models.IntegerField()
     minutos_monitoreo_posterior = models.IntegerField()
+    UID = models.IntegerField()

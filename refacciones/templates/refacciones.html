@@ -8,16 +8,26 @@
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="table-responsive">
-                <table id="equipos" class="table">
+                <table id="refacciones" class="table">
                     <thead>
-                    <th class="centered">Número de serie</th>
+                    <th class="centered">Ticket</th>
+                    <th class="centered">Diagnóstico</th>
+                    <th class="centered">No. de Parte</th>
+                    <th class="centered">Tipo de componente</th>
+                    <th class="centered">Cantidad</th>
+                    <th class="centered">Fecha de entrega</th>
                     <th class="centered">Modelo</th>
                     </thead>
                     <tbody>
                     {% for refaccion in refacciones %}
                         <tr>
-                            <td>{{ refaccion.numero_serie }}</td>
-                            <td>{{ refaccion.modelo }}</td>
+                            <td>{{ refaccion.IdTicket }}</td>
+                            <td>{{ refaccion.DiagnosticoSol }}</td>
+                            <td>{{ refaccion.NoParteComponente }}</td>
+                            <td>{{ refaccion.TipoComponente }}</td>
+                            <td>{{ refaccion.Cantidad }}</td>
+                            <td>{{ refaccion.FechaEntrega }}</td>
+                            <td>{{ refaccion.Modelo }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

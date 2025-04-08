@@ -1,12 +1,11 @@
 let dataTableTickets;
 let dataTableTicketsIsInitialized = false;
-
 let dataTableUsuarios;
 let dataTableUsuariosIsInitialized = false;
-
-
 let dataTableEquipos;
 let dataTableEquiposIsInitialized = false;
+let dataTableRefacciones;
+let dataTableRefaccionesIsInitialized = false;
 
 const initDataTableTickets = async () => {
     if (dataTableTicketsIsInitialized) {
@@ -131,6 +130,45 @@ const initDatatableEquipos = async () => {
     });
     dataTableEquiposIsInitialized = true;
 }
+const initDatatableRefacciones = async () => {
+    if (dataTableRefaccionesIsInitialized) {
+        dataTableRefacciones.destroy();
+    }
+    dataTableRefacciones = $("#refacciones").DataTable({
+        scrollCollapse: true,
+        scrollY: 500,
+        layout: {
+            topStart: {
+                buttons: ['excel']
+            }
+        },
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+    });
+    dataTableRefaccionesIsInitialized = true;
+}
 
 window.addEventListener('load', async () => {
     await initDataTableTickets()
@@ -142,4 +180,7 @@ window.addEventListener('load', async () => {
     await initDatatableEquipos()
     $('#div-equipos').css({"visibility": "visible"});
     $('#loading-equipos').css({"visibility": "hidden"});
+    await initDatatableRefacciones()
+    $('#div-refacciones').css({"visibility": "visible"});
+    $('#loading-refacciones').css({"visibility": "hidden"});
 })
