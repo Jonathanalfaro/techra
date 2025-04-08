@@ -5,16 +5,42 @@ from django.conf import settings
 from django.http import JsonResponse
 from zeep import Client
 from sesiones.models import SessionTechra
+import datetime
+import pytz
 
-
-def get_refacciones_techra(request,numero_serie):
+def get_session_techra(request):
     sesion_techra = SessionTechra.objects.filter(UID=request.user.id)
     if not sesion_techra:
         res_sesion = inicia_sesion_techra(request)
         sesion = json.loads(res_sesion.content.decode('utf-8'))
+        sesion_techra = SessionTechra(
+            fecha_creacion=sesion['FechaCreacion'],
+            id_session=sesion['IdSession'],
+            duracion_minutos=sesion['DuracionMinutos'],
+            id_usuario=sesion['IdUsuario'],
+            permiso_ep=sesion['PermisoEP'],
+            id_empresa=sesion['IdEmpresa'],
+            id_puesto=sesion['IdPuesto'],
+            minutos_monitoreo_anterior=sesion['MinutosMonitoreoAnterior'],
+            minutos_monitoreo_posterior=sesion['MinutosMonitoreoPosterior'],
+            UID=request.user.id
+        )
+        sesion_techra.save()
     else:
-        sesion = sesion_techra[0]
-    id_session = sesion.id_session
+        sesion_techra = sesion_techra[0]
+        expires_at = sesion_techra.fecha_creacion + datetime.timedelta(minutes=120)
+        if expires_at > datetime.datetime.now(pytz.timezone('America/Mexico_City')):
+            res_sesion = inicia_sesion_techra(request)
+            sesion = json.loads(res_sesion.content.decode('utf-8'))
+            sesion_techra.fecha_creacion = sesion['FechaCreacion']
+            sesion_techra.id_session = sesion['IdSession']
+            sesion_techra.duracion_minutos = sesion['DuracionMinutos']
+            sesion_techra.save()
+    return sesion_techra
+
+def get_refacciones_techra(request,numero_serie):
+    sesion_techra = get_session_techra(request)
+    id_session = sesion_techra.id_session
     base_url = settings.BASE_URL
     ws_name = settings.WS_NAMES['refacciones']
     url = f'{base_url}{ws_name}'
@@ -41,29 +67,11 @@ def inicia_sesion_techra(request):
         ''
     )
     res = json.loads(res)[0]
-    nueva_sesion = SessionTechra(
-        fecha_creacion = res['FechaCreacion'],
-        id_session = res['IdSession'],
-        duracion_minutos = res['DuracionMinutos'],
-        id_usuario = res['IdUsuario'],
-        permiso_ep = res['PermisoEP'],
-        id_empresa = res['IdEmpresa'],
-        id_puesto = res['IdPuesto'],
-        minutos_monitoreo_anterior = res['MinutosMonitoreoAnterior'],
-        minutos_monitoreo_posterior = res['MinutosMonitoreoPosterior'],
-        UID = request.user.id
-    )
-    nueva_sesion.save()
     return JsonResponse(res, safe=False)
 def get_tickets_techra(request):
     tickets = None
-    sesion_techra = SessionTechra.objects.filter(UID=request.user.id)
-    if not sesion_techra:
-        res_sesion = inicia_sesion_techra(request)
-        sesion = json.loads(res_sesion.content.decode('utf-8'))
-    else:
-        sesion = sesion_techra[0]
-    id_session = sesion.id_session
+    sesion_techra = get_session_techra(request)
+    id_session = sesion_techra.id_session
     base_url  = settings.BASE_URL
     ws_name = settings.WS_NAMES['tickets']
     url = f'{base_url}{ws_name}'

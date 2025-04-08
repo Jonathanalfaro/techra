@@ -10,6 +10,8 @@ from api_techra.views import get_refacciones_techra
 
 def lista_equipos(request):
     equipos = EquipoTechra.objects.all()
+    for equipo in equipos:
+        equipo.numero_tickets = Ticket.objects.filter(serie__contains=equipo.numero_serie.strip()).count()
     return render(request, 'equipos.html', {'equipos': equipos})
 
 def detalle_equipo(request, numero_serie):
