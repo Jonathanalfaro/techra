@@ -15,6 +15,8 @@
                     <table id="tickets" class="table table-striped table-bordered">
                         <thead>
                         <th class="centered">Ticket</th>
+                        <th class="centered">Cliente</th>
+                        <th class="centered">Localidad</th>
                         <th class="centered">Título</th>
                         <th class="centered">Fecha</th>
                         <th class="centered">Técnico</th>
@@ -26,8 +28,10 @@
                         {% for ticket in tickets %}
                             <tr>
                                 <td>{{ ticket.ticket }}</td>
+                                <td>{{ ticket.cliente }}</td>
+                                <td>{{ ticket.localidad }}</td>
                                 <td>{{ ticket.titulo }}</td>
-                                <td>{{ ticket.fecha_creacion }}</td>
+                                <td>{{ ticket.fecha_creacion|date:"d/m/Y" }}</td>
                                 <td>
                                     <a href="{% url 'detalle_techra_users' nombre_usuario=ticket.tecnico %}">{{ ticket.tecnico }}</a>
                                 </td>
