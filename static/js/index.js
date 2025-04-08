@@ -15,6 +15,7 @@ const initDataTableTickets = async () => {
     dataTableTickets = $("#tickets").DataTable({
         scrollCollapse: true,
         scrollY: 500,
+        order: [[0, 'desc']],
         processing: true,
         layout: {
             topStart: {
@@ -58,6 +59,7 @@ const initDatatableUsuarios = async () => {
     dataTableUsuarios = $("#usuarios").DataTable({
         scrollCollapse: true,
         scrollY: 500,
+        order: [[0, 'asc']],
         layout: {
             topStart: {
                 buttons: ['excel']
@@ -98,6 +100,7 @@ const initDatatableEquipos = async () => {
     dataTableEquipos = $("#equipos").DataTable({
         scrollCollapse: true,
         scrollY: 500,
+        order: [[0, 'asc']],
         layout: {
             topStart: {
                 buttons: ['excel']
@@ -136,6 +139,7 @@ const initDatatableRefacciones = async () => {
     }
     dataTableRefacciones = $("#refacciones").DataTable({
         scrollCollapse: true,
+        order: [[0, 'desc']],
         scrollY: 500,
         layout: {
             topStart: {

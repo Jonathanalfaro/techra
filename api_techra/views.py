@@ -80,7 +80,7 @@ def get_tickets_techra(request):
         id_session,
         '',  # usuario
         '',  # status
-        '2025-03-08',  # fecha
+        '2025-01-01',  # fecha
         '',  # fechafin
         '',  # latitud
         '',  # longitud

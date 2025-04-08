@@ -13,7 +13,7 @@ from .models import Ticket
 # Create your views here.
 @login_required(login_url='login')
 def ticket_list(request):
-    tickets = Ticket.objects.all()
+    tickets = Ticket.objects.all().order_by('ticket')
     if not tickets:
         try:
             tickets = get_tickets_techra(request)
