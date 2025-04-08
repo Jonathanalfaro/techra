@@ -15,18 +15,15 @@
                     <table id="usuarios" class="table table-striped table-bordered">
                         <thead>
                         <th class="centered">Nombre</th>
-                        <th></th>
+                        <th class="centered">Número de tickets</th>
                         </thead>
                         <tbody>
                         {% for user in techra_users %}
                             <tr>
-                                <td>{{ user.nombre }}</td>
                                 <td>
-                                    <a id="view_tickets" title="Ver Tickets" class="btn btn-sm btn-secondary"
-                                       href="{% url 'ticket_list_by_user' nombre_tecnico=user.nombre %}">
-                                        <i class="fa-solid fa-ticket"></i>
-                                    </a>
+                                    <a href="{% url 'detalle_techra_users' nombre_usuario=user.nombre %}">{{ user.nombre }}</a>
                                 </td>
+                                <td>{{ user.numero_tickets }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
