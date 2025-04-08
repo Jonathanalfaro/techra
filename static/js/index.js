@@ -17,6 +17,12 @@ const initDataTableTickets = async () => {
         scrollCollapse: true,
         scrollY: 500,
         processing: true,
+        layout: {
+            topStart: {
+                'pageLength':'',
+                buttons: ['excel']
+            }
+        },
         "language": {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
@@ -53,6 +59,11 @@ const initDatatableUsuarios = async () => {
     dataTableUsuarios = $("#usuarios").DataTable({
         scrollCollapse: true,
         scrollY: 500,
+        layout: {
+            topStart: {
+                buttons: ['excel']
+            }
+        },
         "language": {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
@@ -88,6 +99,11 @@ const initDatatableEquipos = async () => {
     dataTableEquipos = $("#equipos").DataTable({
         scrollCollapse: true,
         scrollY: 500,
+        layout: {
+            topStart: {
+                buttons: ['excel']
+            }
+        },
         "language": {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
@@ -118,12 +134,12 @@ const initDatatableEquipos = async () => {
 
 window.addEventListener('load', async () => {
     await initDataTableTickets()
-    $('#div-tickets').css({"visibility":"visible"});
-    $('#loading-tickets').css({"visibility":"hidden"});
+    $('#div-tickets').css({"visibility": "visible"});
+    $('#loading-tickets').css({"visibility": "hidden"});
     await initDatatableUsuarios()
-    $('#div-usuarios').css({"visibility":"visible"});
-    $('#loading-users').css({"visibility":"hidden"});
-    await  initDatatableEquipos()
-    $('#div-equipos').css({"visibility":"visible"});
-    $('#loading-equipos').css({"visibility":"hidden"});
+    $('#div-usuarios').css({"visibility": "visible"});
+    $('#loading-users').css({"visibility": "hidden"});
+    await initDatatableEquipos()
+    $('#div-equipos').css({"visibility": "visible"});
+    $('#loading-equipos').css({"visibility": "hidden"});
 })

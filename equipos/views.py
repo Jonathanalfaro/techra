@@ -2,6 +2,7 @@
 from django.shortcuts import render
 
 from equipos.models import EquipoTechra
+from tickets.models import Ticket
 
 
 def lista_equipos(request):
@@ -10,7 +11,8 @@ def lista_equipos(request):
 
 def detalle_equipo(request, numero_serie):
     equipo = EquipoTechra.objects.filter(numero_serie=numero_serie.strip())
+    tickets = Ticket.objects.filter(serie=numero_serie.strip())
     if not equipo:
         render(request, 'detalle_equipo.html', {'equipo': {}})
-    return render(request, 'detalle_equipo.html', {'equipo': equipo[0]})
+    return render(request, 'detalle_equipo.html', {'equipo': equipo[0], 'tickets': tickets})
 
