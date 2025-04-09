@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Clientes
+{% endblock %}
+{% block content %}
+    <h1>Lista de clientes</h1>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="spinner-border" role="status" id="loading-clientes">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="table-responsive" id="div-clientes" style="visibility:hidden">
+                <table id="clientes" class="table table-striped table-bordered">
+                    <thead>
+                    <th class="centered">Clave</th>
+                    <th>Cliente</th>
+                    </thead>
+                    <tbody>
+                    {% for cliente in clientes %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'detalle_cliente' cliente=cliente.clave_cliente %}">{{ cliente.clave_cliente }}</a>
+                            </td>
+                            <td> {{ cliente.nombre }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
