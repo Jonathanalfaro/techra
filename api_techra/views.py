@@ -29,7 +29,7 @@ def get_session_techra(request):
     else:
         sesion_techra = sesion_techra[0]
         expires_at = sesion_techra.fecha_creacion + datetime.timedelta(minutes=120)
-        if expires_at > datetime.datetime.now(pytz.timezone('America/Mexico_City')):
+        if expires_at.strftime('%d/%m/%Y %H:%M') < datetime.datetime.now(pytz.timezone('America/Mexico_City')).strftime('%d/%m/%Y %H:%M'):
             res_sesion = inicia_sesion_techra(request)
             sesion = json.loads(res_sesion.content.decode('utf-8'))
             sesion_techra.fecha_creacion = sesion['FechaCreacion']

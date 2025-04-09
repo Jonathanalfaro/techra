@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'equipos',
     'refacciones',
     'api_techra',
+    'estados_ticket',
+    'clientes'
 ]
 
 MIDDLEWARE = [
