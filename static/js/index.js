@@ -9,19 +9,66 @@ let dataTableRefaccionesIsInitialized = false;
 let dataTableClientes;
 let dataTableClientesIsInitialized = false;
 
-const initDataTableTickets = async () => {
-    if (dataTableTicketsIsInitialized) {
-        dataTableTickets.destroy();
+let dataTable;
+let dataTableIsInitialized = false;
+
+const initDataTables = async () => {
+    if (dataTableIsInitialized) {
+        dataTable.destroy();
     }
     // await listDocuments()
-    dataTableTickets = $("#tickets").DataTable({
+    dataTable = $("table").DataTable({
         scrollCollapse: true,
         scrollY: 500,
         order: [[0, 'desc']],
         processing: true,
         layout: {
             topStart: {
-                'pageLength':'',
+                'pageLength': '',
+                buttons: ['excel']
+            }
+        },
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+    });
+    dataTableIsInitialized = true;
+}
+
+const initDataTableTickets = async () => {
+    if (dataTableTicketsIsInitialized) {
+        dataTableTickets.destroy();
+    }
+    // await listDocuments()
+    dataTableTickets = $("table").DataTable({
+        scrollCollapse: true,
+        scrollY: 500,
+        order: [[0, 'desc']],
+        processing: true,
+        layout: {
+            topStart: {
+                'pageLength': '',
                 buttons: ['excel']
             }
         },
@@ -216,20 +263,9 @@ const initDatatableClientes = async () => {
     dataTableClientesIsInitialized = true;
 }
 
+
 window.addEventListener('load', async () => {
-    await initDataTableTickets()
-    $('#div-tickets').css({"visibility": "visible"});
-    $('#loading-tickets').css({"visibility": "hidden"});
-    await initDatatableUsuarios()
-    $('#div-usuarios').css({"visibility": "visible"});
-    $('#loading-users').css({"visibility": "hidden"});
-    await initDatatableEquipos()
-    $('#div-equipos').css({"visibility": "visible"});
-    $('#loading-equipos').css({"visibility": "hidden"});
-    await initDatatableRefacciones()
-    $('#div-refacciones').css({"visibility": "visible"});
-    $('#loading-refacciones').css({"visibility": "hidden"});
-    await initDatatableClientes()
-    $('#div-clientes').css({"visibility": "visible"});
-    $('#loading-clientes').css({"visibility": "hidden"});
+    await initDataTables()
+    $('.table-responsive').css({"visibility": "visible"});
+    $('.spinner-border').css({"visibility": "hidden"});
 })
