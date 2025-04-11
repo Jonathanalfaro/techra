@@ -28,4 +28,5 @@ urlpatterns = [
     path('', include('refacciones.urls')),
     path('', include('api_techra.urls')),
     path('', include('clientes.urls')),
+    path('', include('localizaciones.urls')),
 ]

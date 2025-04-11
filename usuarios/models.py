@@ -6,5 +6,8 @@ class Usuarios(models.Model):
     user_techra = models.CharField(max_length=100)
     password_techra = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.user_techra
+
 
 

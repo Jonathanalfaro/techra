@@ -48,7 +48,8 @@
                         </li>
                         <li>
                             <a href="/usuarios/" class="nav-link px-0 align-middle">
-                                <i class="fa-solid fa-users-gear"></i> <span class="ms-1 d-none d-sm-inline">Técnicos</span></a>
+                                <i class="fa-solid fa-users-gear"></i> <span
+                                    class="ms-1 d-none d-sm-inline">Técnicos</span></a>
                         </li>
                         <li>
                             <a href="/equipos/" class="nav-link px-0 align-middle">
@@ -57,6 +58,31 @@
                         <li>
                             <a href="/clientes/" class="nav-link px-0 align-middle">
                                 <i class="fa-solid fa-users-between-lines"></i> <span class="ms-1 d-none d-sm-inline">Clientes</span></a>
+                        </li>
+                        {#                        <li>#}
+                        {#                            <a href="/localizaciones/" class="nav-link px-0 align-middle">#}
+                        {#                                <i class="fa-solid fa-location-dot"></i> <span class="ms-1 d-none d-sm-inline">Localizaciones</span></a>#}
+                        {#                        </li>#}
+                        <li>
+                            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-location-dot"></i> <span class="ms-1 d-none d-sm-inline">Localizaciones</span>
+                            </a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                                {% if user.is_superuser %}
+                                    <li class="w-100">
+                                        <a href="/localizaciones/" class="nav-link px-0"> <span
+                                                class="d-none d-sm-inline">Todas las localizaciones</span></a>
+                                    </li>
+                                {% endif %}
+                                <li class="w-100">
+                                    <a href="{% url 'lista_localizaciones_usuario' user_id=user.usuarios.id %}"
+                                       class="nav-link px-0"> <span class="d-none d-sm-inline">Mis localizaciones</span></a>
+                                </li>
+                                <li>
+                                    <a href="/localizaciones/registrar" class="nav-link px-0"> <span
+                                            class="d-none d-sm-inline">Registrar localización</span></a>
+                                </li>
+                            </ul>
                         </li>
                     {% endif %}
                     {#                    <li>#}

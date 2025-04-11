@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Registrar Localizacion
+{% endblock %}
+{% block content %}
+    <h1>Localización</h1>
+    <form method="post" class="form-with-validation" action="">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                <input type="text" value="{{ user }}" id="usuario" name="usuario" disabled class="form-control"/>
+                <label class="form-label" for="usuario">Nombre de usuario</label>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                {{ form.longitud }}
+                <label class="form-label" for="longitud">Longitud</label>
+            </div>
+            <div class="col">
+                {{ form.latitud }}
+                <label class="form-label" for="latitud">Latitud</label>
+            </div>
+            <div class="col">
+                {{ form.user_id }}
+                <label class="form-label" for="user_id">Usuario</label>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary form-submint">Guardar</button>
+    </form>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const boton_localizacion = document.getElementById('get_localizacion')
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        document.getElementById("latitud").value = position.coords.latitude
+                        document.getElementById("longitud").value = position.coords.longitude
+                        console.log(position.coords.latitude)
+                        console.log(position.coords.longitude)
+                    },
+                    (error) => {
+                        console.log(error)
+                    }
+                )
+            }
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Lista de localizaciones
+{% endblock %}
+{% block content %}
+    <h1>Localizaciones</h1>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="spinner-border" role="status" id="loading-localizaciones">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="table-responsive" id="div-localizaciones" style="visibility:hidden">
+                <table id="localizaciones" class="table table-striped table-bordered">
+                    <thead>
+                    <th class="centered">Técnico</th>
+                    <th>Latitud</th>
+                    <th>Longitud</th>
+                    <th>Fecha</th>
+                    <th></th>
+                    </thead>
+                    <tbody>
+                    {% for localizacion in localizaciones %}
+                        <tr>
+                            <td>{{ localizacion.user_id }}</td>
+                            <td>{{ localizacion.latitud }}</td>
+                            <td>{{ localizacion.longitud }}</td>
+                            <td>{{ localizacion.created_at }}</td>
+                            <td><a href="#" title="Ver en el mapa" class="btn btn-sm btn-info"><i
+                                        class="fa-solid fa-globe"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

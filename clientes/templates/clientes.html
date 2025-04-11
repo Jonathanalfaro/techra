@@ -15,6 +15,7 @@
                     <thead>
                     <th class="centered">Clave</th>
                     <th>Cliente</th>
+                    <th></th>
                     </thead>
                     <tbody>
                     {% for cliente in clientes %}
@@ -23,6 +24,7 @@
                                 <a href="{% url 'detalle_cliente' cliente=cliente.clave_cliente %}">{{ cliente.clave_cliente }}</a>
                             </td>
                             <td> {{ cliente.nombre }}</td>
+                            <td><a href="#" title="Generar reporte" class="btn btn-primary"><i class="fa-solid fa-note-sticky"></i></a> </td>
                         </tr>
                     {% endfor %}
                     </tbody>
