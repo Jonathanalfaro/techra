@@ -17,17 +17,17 @@
             <div class="col">
                 {{ form.longitud }}
                 <label class="form-label" for="longitud">Longitud</label>
-            </div>
-            <div class="col">
                 {{ form.latitud }}
                 <label class="form-label" for="latitud">Latitud</label>
-            </div>
-            <div class="col">
                 {{ form.user_id }}
                 <label class="form-label" for="user_id">Usuario</label>
             </div>
+            <div class="col" id="div-map">
+                {#                {{ map|safe }}#}
+            </div>
         </div>
         <br>
+
         <button class="btn btn-primary form-submint">Guardar</button>
     </form>
 
@@ -38,14 +38,30 @@
             if ('geolocation' in navigator) {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
-                        document.getElementById("latitud").value = position.coords.latitude
-                        document.getElementById("longitud").value = position.coords.longitude
-                        console.log(position.coords.latitude)
-                        console.log(position.coords.longitude)
+                        let lat = position.coords.latitude
+                        let lon = position.coords.longitude
+                        let map_html = 'no map'
+                        console.log(lat, lon)
+                        document.getElementById("latitud").value = lat
+                        document.getElementById("longitud").value = lon
+                        {#if (lat != '' && lon != '')#}
+                        fetch('http://127.0.0.1:8000/localizaciones/mapa/' + lat + '/' + lon + '/').then(r => {
+                            r.json().then((jsonr) => {
+                                map_html = jsonr
+                                const div_map = document.getElementById("div-map");
+                                div_map.innerHTML = map_html
+                            }).catch((ej) => {
+                                console.log(ej)
+                            })
+
+                        }).catch((e) => {
+                            console.log(e)
+                        });
                     },
                     (error) => {
                         console.log(error)
-                    }
+                    },
+                    {enableHighAccuracy: false}
                 )
             }
         })
