@@ -12,4 +12,4 @@ import json
 def lista_notas(request, ticket):
     notas = get_notas_techra(request, ticket)
     notas = json.loads(notas.content.decode('utf-8'))
-    return render(request,'notas.html', {'ticket': ticket, 'notas': notas})
+    return render(request,'notas_modal.html', {'ticket': ticket, 'notas': notas})

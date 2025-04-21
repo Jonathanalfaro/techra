@@ -41,8 +41,15 @@
                                         <a href="{% url 'detalle_equipo' numero_serie=ns %}">{{ ns }}</a>
                                     {% endfor %}
                                 </td>
-                                <td><a href="{% url 'lista_notas' ticket=ticket.ticket %}" title="Ver Notas" class="btn btn-sm btn-info"><i
-                                        class="fa-solid fa-note-sticky"></i></a></td>
+                                <td>
+                                    <button id="open_notas" title="Ver notas" class="btn btn-sm btn-info"
+                                            onclick="abrir_modal_notas('{% url 'lista_notas' ticket=ticket.ticket %}')"
+                                            data-popup-url="{% url 'lista_notas' ticket=ticket.ticket %}">
+                                        <i class="fa-solid fa-note-sticky"></i>
+                                    </button>
+{#                                    <a href="{% url 'lista_notas' ticket=ticket.ticket %}" title="Ver Notas" class="btn btn-sm btn-info"><i#}
+{#                                        class="fa-solid fa-note-sticky"></i></a>#}
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -51,4 +58,15 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modal-notas" role="dialog">
+
+
+    </div>
+    <script>
+        function abrir_modal_notas(url) {
+            $('#modal-notas').load(url, function () {
+                $(this).modal('show')
+            })
+        }
+    </script>
 {% endblock %}
