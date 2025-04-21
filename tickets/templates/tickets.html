@@ -41,7 +41,7 @@
                                         <a href="{% url 'detalle_equipo' numero_serie=ns %}">{{ ns }}</a>
                                     {% endfor %}
                                 </td>
-                                <td><a href="#" title="Ver Notas" class="btn btn-sm btn-info"><i
+                                <td><a href="{% url 'lista_notas' ticket=ticket.ticket %}" title="Ver Notas" class="btn btn-sm btn-info"><i
                                         class="fa-solid fa-note-sticky"></i></a></td>
                             </tr>
                         {% endfor %}

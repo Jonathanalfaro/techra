@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'api_techra',
     'estados_ticket',
     'clientes',
-    'localizaciones'
+    'localizaciones',
+    'notas',
 ]
 
 MIDDLEWARE = [

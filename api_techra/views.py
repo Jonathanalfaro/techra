@@ -132,3 +132,21 @@ def get_tickets_techra(request):
     )
     res = json.loads(res)[:-1]
     return JsonResponse(res, safe=False)
+
+
+def get_notas_techra(request, ticket):
+    sesion_techra = get_session_techra(request)
+    id_session = sesion_techra.id_session
+    base_url = settings.BASE_URL
+    ws_name = settings.WS_NAMES['notas']
+    url = f'{base_url}{ws_name}'
+    cliente_notas = Client(url)
+    res = cliente_notas.service.getNotas(
+        ticket,
+        '',
+        '',
+        '',
+        id_session
+    )
+    res = json.loads(res)
+    return JsonResponse(res, safe=False)
