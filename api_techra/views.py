@@ -8,6 +8,37 @@ from sesiones.models import SessionTechra
 import datetime
 import pytz
 
+def get_tickets_cliente_techra(request, cliente):
+    base_url = settings.BASE_URL
+    ws_name = settings.WS_NAMES['tickets']
+    url = f'{base_url}{ws_name}'
+    sesion_techra = get_session_techra(request)
+    id_session = sesion_techra.id_session
+    cliente_tickets = Client(url)
+    # cliente_tickets.settings.strict = False
+    res = cliente_tickets.service.getTickets(
+        id_session,
+        '',
+        '',  # status,
+        '',  # fecha,
+        '',  # fechafin,
+        '',  # latitud,
+        '',  # longitud,
+        '',  # pagina,
+        '',  # tampagina,
+        '',  # ticket,
+        '',  # serie,
+        1,  # cerrados,
+        1,  # cancelados,
+        0,  # morosos,
+        '',  # área de atencion
+        '',  # tipo,
+        cliente,  # cliente,
+        ''  # todos,
+    )
+    res = json.loads(res)[:-1]
+    return JsonResponse(res, safe=False)
+
 def get_session_techra(request):
     sesion_techra = SessionTechra.objects.filter(UID=request.user.id)
     if not sesion_techra:
@@ -70,6 +101,9 @@ def inicia_sesion_techra(request):
     return JsonResponse(res, safe=False)
 def get_tickets_techra(request):
     tickets = None
+    fecha_inicio = ''
+    fecha_fin = ''
+    cliente = ''
     sesion_techra = get_session_techra(request)
     id_session = sesion_techra.id_session
     base_url  = settings.BASE_URL
@@ -78,22 +112,23 @@ def get_tickets_techra(request):
     cliente_tickets = Client(url)
     res = cliente_tickets.service.getTickets(
         id_session,
-        '',  # usuario
-        '',  # status
-        '2025-01-01',  # fecha
-        '',  # fechafin
-        '',  # latitud
-        '',  # longitud
-        '',  # pagina
-        '',  # tampagina
-        '',  # ticket
-        '',  # serie
-        0,  # cerrados
-        0,  # cancelados
-        0,  # morosos
-        '',  # tipo
-        '',  # cliente
-        ''  # todos
+        '',
+        '',  # status,
+        fecha_inicio,  # fecha,
+        fecha_fin,  # fechafin,
+        '',  # latitud,
+        '',  # longitud,
+        '',  # pagina,
+        '',  # tampagina,
+        '',  # ticket,
+        '',  # serie,
+        0,  # cerrados,
+        0,  # cancelados,
+        0,  # morosos,
+        '',  # área de atencion
+        '',  # tipo,
+        cliente,  # cliente,
+        ''  # todos,
     )
     res = json.loads(res)[:-1]
     return JsonResponse(res, safe=False)

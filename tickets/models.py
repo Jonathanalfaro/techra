@@ -5,7 +5,7 @@ class Ticket(models.Model):
 
     ticket = models.CharField(max_length=10, blank=True, null=True)
     titulo = models.CharField(max_length=100, blank=True, null=True)
-    fecha_creacion = models.DateField(blank=True, null=True)
+    fecha_creacion = models.DateTimeField(blank=True, null=True)
     prioridad = models.CharField(max_length=100, blank=True, null=True)
     zona = models.CharField(max_length=100, blank=True, null=True)
     tecnico = models.CharField(max_length=100, blank=True, null=True)
