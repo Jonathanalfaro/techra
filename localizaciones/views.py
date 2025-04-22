@@ -39,3 +39,11 @@ def get_map(request, latitud, longitud):
     map = map._repr_html_()
     return JsonResponse(map,  safe=False)
     # return render(request, 'map.html', {'map': map})
+
+def mapa_localizaciones(request, user_id):
+    localizaciones = Localizacion.objects.all()
+    map = folium.Map(location=[19.316736, -99.0609408], zoom_start=10)
+    for localizacion in localizaciones:
+        folium.Marker([localizacion.latitud, localizacion.longitud]).add_to(map)
+    map = map._repr_html_()
+    return render(request, 'mapa_localizaciones.html', {'map': map, 'usuario': user_id})

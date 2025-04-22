@@ -26,7 +26,7 @@
                             <td>{{ localizacion.latitud }}</td>
                             <td>{{ localizacion.longitud }}</td>
                             <td>{{ localizacion.created_at }}</td>
-                            <td><a href="#" title="Ver en el mapa" class="btn btn-sm btn-info"><i
+                            <td><a href="{% url 'mapa_localizaciones' user_id=user.id %}" title="Ver en el mapa" class="btn btn-sm btn-info"><i
                                         class="fa-solid fa-globe"></i></a></td>
                         </tr>
                     {% endfor %}
